@@ -1,5 +1,8 @@
 package com.wmp.exam.service;
 
+import com.wmp.exam.domain.ApiResult;
+import com.wmp.exam.domain.CommonResponseDto;
+import com.wmp.exam.domain.Result;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.Comparator;
@@ -162,5 +165,21 @@ public class ExamServiceImpl implements ExamService {
       result[1] = str.substring(length - reminder, length);
     }
     return result;
+  }
+
+  @Override
+  public CommonResponseDto generate(String url, boolean removeTag, int digit) {
+    String str = getHtmlByUrl(url, removeTag);
+    str = extractionStringOrNumber(str);
+    int[] numArray = extractionSortNumber(str);
+    String[] stringArray = extractionSortString(str);
+    String result = mergeString(stringArray, numArray);
+    String[] resultArray = shareString(result, digit);
+    return CommonResponseDto.builder().result(
+        Result.builder().entry(
+            ApiResult.builder().share(resultArray[0])
+                .remainder(resultArray[1]).build()
+        ).build()
+    ).build();
   }
 }

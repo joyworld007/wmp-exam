@@ -3,10 +3,10 @@
 <head>
   <script src="/webjars/jquery/3.4.1/jquery.min.js"></script>
   <meta charset="utf-8">
-  <title>URL Shortening Service</title>
+  <title>WMP EXAM</title>
   <style> input[type=text], select {
     width: 100%;
-    padding: 12px 20px;
+    padding: 12px 10px;
     margin: 8px 0;
     display: inline-block;
     border: 1px solid #ccc;
@@ -44,26 +44,22 @@
     $(document).ready(function () {
 
       $('#generate').click(function () {
-        console.log($('#orgUrl').val());
         $.ajax(
             {
               type: "POST",
               url: '/v1/exam',
               data: JSON.stringify({
-                url: $('#url').val()
+                url: $('#url').val(),
+                type: $('#type').val(),
+                count: $('#count').val()
               }),
               contentType: "application/json",
               dataType: "text",
               success: function (res) {
                 let obj = JSON.parse(res);
                 console.log(obj)
-                if(obj.code == "FAIL"
-                    && obj.message == "INVALID_URL" ) {
-                  alert('유효한 URL이 아닙니다');
-                  $('#url').focus();
-                  return false;
-                }
-                $('#shortUrl').val(obj.result.entry.url);
+                $('#share').val(obj.result.entry.share);
+                $('#remainder').val(obj.result.entry.remainder);
               },
               error: function (xhr, status, error) {
                 console.log(error);
@@ -81,13 +77,13 @@
   <form id="urlForm">
     <label for="url">URL</label>
     <input type="text" id="url">
-    <label for="select">TYPE</label>
-    <select id="select">
-      <option>HTML 제거</option>
-      <option>TEXT 전체</option>>
+    <label for="type">TYPE</label>
+    <select id="type">
+      <option value="0">HTML 제거</option>
+      <option value="1">TEXT 전체</option>>
     </select>
-    <label for="input1">출력묶음단위(자연수)</label>
-    <input type="text" id="input1">
+    <label for="count">출력묶음단위(자연수)</label>
+    <input type="text" id="count">
     <input type="button" id="generate" value="출력">
     </br></br></br>
     <label for="share">몫</label>

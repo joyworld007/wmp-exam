@@ -4,17 +4,16 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.Setter;
 
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
-@ToString
-@Builder
-public class ApiResponse {
+@Setter
+public class ApiRequest {
 
-  ApiResult result;
-  String message;
-  String code;
-
+  private String url;
+  private int type;
+  private int count;
 }
