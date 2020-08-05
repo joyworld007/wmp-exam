@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: wmp-exam
+  profiles:
+    active: local
+
+
+

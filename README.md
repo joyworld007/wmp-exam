@@ -1,4 +1,4 @@
-## EXAM
+## WMP EXAM
 
 ## Contents
 * [Specifications](#chapter-1)
@@ -11,24 +11,18 @@
 ````
  OpenJDK11
  Spring Boot 2.3.0.RELEASE
- Spring Data Redis
- Embed Redis 
- Rest API
- Swagger2
  Thymeleaf 
 ````
 
 ### <a name="chapter-2"></a>Requirement 
 ````
-URL을 입력받아 짧게 줄여주고, Shortening된 URL을 입력하면 원래 URL로 리다이렉트하는 URL Shortening Service
-예) https://en.wikipedia.org/wiki/URL_shortening => http://localhost/JZfOQNro
-
-- URL 입력폼 제공 및 결과 출력
-- URL Shortening Key는 8 Character 이내로 생성되어야 합니다.
-- 동일한 URL에 대한 요청은 동일한 Shortening Key로 응답해야 합니다.
-- 동일한 URL에 대한 요청 수 정보를 가져야 합니다.
-- Shortening된 URL을 요청받으면 원래 URL로 리다이렉트 합니다.
-- Unit test 및 Integration test 작성.
+URL을 입력받아 HTML을 획득하여 아래 요구사항을 만족하는 서비스를 구현하라 
+- 모든 문자 입력 가능
+- 영어 숫자만 출력 
+- 숫자 오름 차순으로 정렬
+- 영어는 알파벳 순으로 정렬 단 대문자가 우선순위가 높음
+- 출력은 영어, 숫자 순으로 교차 출력
+- 숫자를 입력 받아 묶음, 나머지 출력
 ````
 
 ### <a name="chapter-3"></a>How to Run
